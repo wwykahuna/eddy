@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 import com.baomidou.dynamic.datasource.provider.DynamicDataSourceProvider;
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DataSourceProperty;
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties;
-import com.sitech.crmmci.eai.brupet.common.service.DBDecryption;
+import com.sitech.crmmci.eai.brupet.common.cryption.DBDecryption;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 

@@ -13,9 +13,9 @@ import org.springframework.context.annotation.Configuration;
 
 import com.baomidou.dynamic.datasource.provider.DynamicDataSourceProvider;
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties;
+import com.sitech.crmmci.eai.brupet.common.cryption.DBDecryption;
+import com.sitech.crmmci.eai.brupet.common.cryption.SimpleDBDecryption;
 import com.sitech.crmmci.eai.brupet.common.provider.ExDynamicDataSourceProvider;
-import com.sitech.crmmci.eai.brupet.common.service.DBDecryption;
-import com.sitech.crmmci.eai.brupet.common.service.SimpleDBDecryption;
 
 @Configuration
 @EnableConfigurationProperties(DynamicDataSourceProperties.class)

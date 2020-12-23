@@ -1,4 +1,4 @@
-package com.sitech.crmmci.eai.brupet.common.service;
+package com.sitech.crmmci.eai.brupet.common.cryption;
 
 public interface DBDecryption {
 
