@@ -1,0 +1,28 @@
+server:
+   port: 8188
+   address: 0.0.0.0
+spring:
+   datasource:
+      dynamic:
+         primary: oracle
+         datasource:
+            oracle:
+               driverClassName: oracle.jdbc.OracleDriver
+               url: jdbc:oracle:thin:@//172.18.238.229:1632/hkthradb
+               username: dbinter
+               password: Dbinter123.com
+               type: com.zaxxer.hikari.HikariDataSource
+               autoCommit: false
+               registerMbeans: false
+               minimumIdle: 5
+               maximumPoolSize: 5
+management:
+   security:
+      enabled: false
+   endpoints:
+      web:
+         exposure:
+            include: mappings,httptrace,metrics,loggers,info,env,configprops,health,beans
+   endpoint:
+      health:
+         show-details: always
