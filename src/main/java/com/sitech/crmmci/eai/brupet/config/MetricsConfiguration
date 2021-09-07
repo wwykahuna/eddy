@@ -1,0 +1,51 @@
+package com.sitech.crmpd.quant.config;
+
+
+import com.sitech.crmpd.quant.factory.QuantThreadFactory;
+import io.micrometer.core.instrument.Clock;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Metrics;
+import io.micrometer.core.instrument.composite.CompositeMeterRegistry;
+import io.micrometer.core.instrument.logging.LoggingMeterRegistry;
+import io.micrometer.core.instrument.logging.LoggingRegistryConfig;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+
+import java.time.Duration;
+import java.util.List;
+
+@Configuration
+public class MetricsConfiguration {
+
+    @Bean
+    @Primary
+    public CompositeMeterRegistry createCompositeMeterRegistry(Clock clock, List<MeterRegistry> registries){
+        CompositeMeterRegistry compositeMeterRegistry = Metrics.globalRegistry;
+        registries.forEach(item->compositeMeterRegistry.add(item));
+        return compositeMeterRegistry;
+    }
+
+    @Bean
+    public LoggingMeterRegistry createLoggingMeterRegistry(Clock clock){
+        LoggingMeterRegistry registry = LoggingMeterRegistry.builder(new LoggingRegistryConfig() {
+            @Override
+            public Duration step() {
+                return Duration.ofSeconds(60); // log every 10 seconds
+            }
+
+            @Override
+            public String get(String key) {
+                return null;
+            }
+        }).clock(clock).threadFactory(new QuantThreadFactory("LoggingMeter")).build();
+        return registry;
+    }
+
+    @Bean
+    public Clock micrometerClock() {
+        return Clock.SYSTEM;
+    }
+
+}
